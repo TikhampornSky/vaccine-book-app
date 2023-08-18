@@ -1,0 +1,22 @@
+.card {
+    width: 90%;
+    height: auto;
+    background: rgb(171, 223, 246);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+}
+
+.topic {
+    font-weight: 800;
+}
+
+.description {
+    font-weight: 400;
+    text-indent: 40px;
+}
+
+.ref {
+    display: inline;
+}
