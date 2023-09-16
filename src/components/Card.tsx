@@ -16,12 +16,11 @@ export default function Card({name, image, onReview, review}: {name: string, ima
                 <div className='w-full h-1/6 flex items-center justify-center'>
                     <h1 className='text-center font-bold text-3xl mt-3'> {name} </h1>
                 </div>
-                <div className='w-full h-1/6 flex items-center justify-center'>
+                <div className='w-full h-1/6 flex items-center justify-center' onClick={(e) => e.stopPropagation()}>
                     <Rating
                         name="simple-controlled"
                         value={review}
                         onChange={(event, newValue) => {
-                            event.stopPropagation();
                             setValue(newValue);
                             onReview(name, newValue);
                         }}
