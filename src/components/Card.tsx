@@ -1,11 +1,12 @@
 "use client"
 import Image from 'next/image'
 import InteractiveCard from './InteractiveCard'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Rating } from '@mui/material';
 
-export default function Card({name, image, onReview, review}: {name: string, image: string, onReview: (name: string, rating: number | null) => void, review: number | null}) {
+export default function Card({name, image, onReview, review}: {name: string, image: string, onReview?: (name: string, rating: number | null) => void, review: number | null}) {
     const [value, setValue] = useState<number | null>(0);
+    
     return (
         <InteractiveCard name={name}>
             <div className='w-96 h-96 bg-slate-200 shadow-md rounded-lg p-4 m-5'>
@@ -17,6 +18,7 @@ export default function Card({name, image, onReview, review}: {name: string, ima
                     <h1 className='text-center font-bold text-3xl mt-3'> {name} </h1>
                 </div>
                 <div className='w-full h-1/6 flex items-center justify-center' onClick={(e) => e.stopPropagation()}>
+                    { onReview ?
                     <Rating
                         name="simple-controlled"
                         value={review}
@@ -25,6 +27,7 @@ export default function Card({name, image, onReview, review}: {name: string, ima
                             onReview(name, newValue);
                         }}
                     />
+                    : '' }
                 </div>
             </div>
         </InteractiveCard>

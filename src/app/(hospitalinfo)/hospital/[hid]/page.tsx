@@ -1,8 +1,8 @@
-export default function HospitalDetail({params}: {params : {hid: string}}) {
-    const mockHospitalMap = new Map();
-    mockHospitalMap.set("001", {name: "Chulalongkorn Hospital", image: "/img/chula.jpg"});
-    mockHospitalMap.set("002", {name: "Rajavithi Hospital", image: "/img/rajavithi.jpg"});
-    mockHospitalMap.set("003", {name: "Thammasat University Hospital", image: "/img/thammasat.jpg"});
+import getHospital from "@/libs/getHospital"
+
+export default async function HospitalDetail({params}: {params : {hid: string}}) {
+    const resp = await getHospital(params.hid)
+    const hospitalDetail = resp.data
 
     return (
         <div className="mt-28">
@@ -11,16 +11,18 @@ export default function HospitalDetail({params}: {params : {hid: string}}) {
             </div>
             <div className="flex items-center justify-center w-screen">
                 <div className="flex flex-row">
-                    <img src={(mockHospitalMap.get(params.hid)).image} alt="Hospital Image" className="w-96 h-96" />
-                    <div className="flex items-center justify-center">
-                        <div className="text-xl mx-5"> {(mockHospitalMap.get(params.hid)).name} </div>
+                    <img src={hospitalDetail.picture} alt="Hospital Image" className="w-96 h-96" />
+                    <div className="flex flex-col items-start justify-center">
+                        <div className="text-xl mx-5"> Name: {hospitalDetail.name} </div>
+                        <br></br>
+                        <div className="text-lg mx-5"> Address: {hospitalDetail.address} </div>
+                        <div className="text-lg mx-5"> District: {hospitalDetail.district} </div>
+                        <div className="text-lg mx-5"> Province: {hospitalDetail.province} </div>
+                        <div className="text-lg mx-5"> Postal Code: {hospitalDetail.postalcode} </div>
+                        <div className="text-lg mx-5"> Tel: {hospitalDetail.tel} </div>
                     </div>
                 </div>
             </div>
         </div>
     )
-}
-
-export async function generateStaticParams() {
-    return [{hid: "001"}, {hid: "002"}, {hid: "003"}]
 }
