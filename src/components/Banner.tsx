@@ -3,14 +3,21 @@ import { useState } from 'react'
 import styles from './banner.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 export default function Banner() {
     const covers = ['/img/cover-1.jpg', '/img/cover-2.jpg', '/img/cover-3.jpg', '/img/cover-4.jpg']
     const [index, setIndex] = useState(0)
     const router = useRouter()
+    const {data: session} = useSession()
+
     return (
         <div className={styles.banner} onClick={()=>setIndex(index+1)}>
             <Image src={covers[index%4]} alt="cover" fill={true} objectFit='cover' />
+            {
+                session? <div className='z-30 absolute top-20 right-10 text-xl bg-teal-200 m-4 p-4'> Hello, {session.user?.name} </div>
+                : null
+            }
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <div className={styles.bannerText}>
                     <h1 className='text-4xl font-medium'> เชิญชวนประชาชนทุกคนมาร่วมฉีดวัคซีน </h1>
