@@ -13,7 +13,7 @@ export interface IHospitalsResponse {
     count: number,
     data: IHospital[],
     pagination: any,
-    sucess: boolean,
+    success: boolean,
 }
 
 export interface IHospitalResponse {
