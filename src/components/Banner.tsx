@@ -26,7 +26,7 @@ export default function Banner() {
                 </div>
             </div>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} className="absolute bottom-0 right-0 h-16 w-auto">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-20"
+                <button data-test-id="hospitals-button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-20"
                 onClick={(e) => {e.stopPropagation(); router.push('/hospital')}}>
                     See Hospital List
                 </button>

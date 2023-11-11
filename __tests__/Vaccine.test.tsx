@@ -1,6 +1,7 @@
 import HospitalCatalog from "@/components/HospitalCatalog";
 import { IHospitalsResponse } from "@/interface/hospital";
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect } from "@jest/globals";
 
 const mockHospitalJson: IHospitalsResponse = {
     "success": true,
